@@ -17,6 +17,11 @@ const Layout = () => {
                 <Button className="main-nav-button">Home</Button>
               </LinkContainer>
             </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="/cart">
+                <Button className="main-nav-button">Cart</Button>
+              </LinkContainer>
+            </Nav.Item>
           </Nav>
         </Container>
       </Navbar>
