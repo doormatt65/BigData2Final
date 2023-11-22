@@ -1,0 +1,301 @@
+{"Final": [{"Final": []}{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Walk in the Woods: Rediscovering America on the Appalachian Trail"},
+                "Authors": {"S": "Bill Bryson"},
+                "Rating": {"N": "4.06"},
+                "ISBN": {"S": "0307279464"},
+                "PageCount": {"N": "397"},
+                "Publisher": {"S": "Anchor Books"},
+                "ItemID": {"S": "326"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Walk in the Woods: Rediscovering America on the Appalachian Trail"},
+                "Authors": {"S": "Bill Bryson"},
+                "Rating": {"N": "4.06"},
+                "ISBN": {"S": "0767902513"},
+                "PageCount": {"N": "276"},
+                "Publisher": {"S": "Bantam Doubleday Dell Publishing Group"},
+                "ItemID": {"S": "327"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Walk to Remember"},
+                "Authors": {"S": "Nicholas Sparks"},
+                "Rating": {"N": "4.17"},
+                "ISBN": {"S": "0446693804"},
+                "PageCount": {"N": "240"},
+                "Publisher": {"S": "Grand Central Publishing"},
+                "ItemID": {"S": "328"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A War Like No Other: How the Athenians & Spartans Fought the Peloponnesian War"},
+                "Authors": {"S": "Victor Davis Hanson"},
+                "Rating": {"N": "4.11"},
+                "ISBN": {"S": "0812969707"},
+                "PageCount": {"N": "397"},
+                "Publisher": {"S": "Random House"},
+                "ItemID": {"S": "329"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Whole Lotta Love"},
+                "Authors": {"S": "Donna Hill/Francis Ray/Brenda Jackson/Monica Jackson"},
+                "Rating": {"N": "4.46"},
+                "ISBN": {"S": "0451210905"},
+                "PageCount": {"N": "384"},
+                "Publisher": {"S": "Signet"},
+                "ItemID": {"S": "330"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Whole New Light"},
+                "Authors": {"S": "Sandra Brown"},
+                "Rating": {"N": "3.55"},
+                "ISBN": {"S": "055329783X"},
+                "PageCount": {"N": "227"},
+                "Publisher": {"S": "Bantam (Fanfare Imprint)"},
+                "ItemID": {"S": "331"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Wicked Gentleman (Cavendish Square  #1)"},
+                "Authors": {"S": "Jane Feather"},
+                "Rating": {"N": "3.62"},
+                "ISBN": {"S": "1416525513"},
+                "PageCount": {"N": "474"},
+                "Publisher": {"S": "Pocket Star"},
+                "ItemID": {"S": "332"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Wife After God's Own Heart Growth and Study Guide"},
+                "Authors": {"S": "Elizabeth George"},
+                "Rating": {"N": "4.69"},
+                "ISBN": {"S": "0736911685"},
+                "PageCount": {"N": "160"},
+                "Publisher": {"S": "Harvest House Publishers"},
+                "ItemID": {"S": "333"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Wild Sheep Chase (The Rat  #3)"},
+                "Authors": {"S": "Haruki Murakami/Alfred Birnbaum"},
+                "Rating": {"N": "3.95"},
+                "ISBN": {"S": "037571894X"},
+                "PageCount": {"N": "353"},
+                "Publisher": {"S": "Vintage"},
+                "ItemID": {"S": "334"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Winter Haunting (Seasons of Horror  #2)"},
+                "Authors": {"S": "Dan Simmons"},
+                "Rating": {"N": "3.6"},
+                "ISBN": {"S": "0380817160"},
+                "PageCount": {"N": "371"},
+                "Publisher": {"S": "HarperTorch"},
+                "ItemID": {"S": "335"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Woman in Berlin: Eight Weeks in the Conquered City: A Diary"},
+                "Authors": {"S": "Anonymous/Philip Boehm/Hans Magnus Enzensberger"},
+                "Rating": {"N": "4.33"},
+                "ISBN": {"S": "0312426119"},
+                "PageCount": {"N": "261"},
+                "Publisher": {"S": "Picador"},
+                "ItemID": {"S": "336"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Woman in Jerusalem"},
+                "Authors": {"S": "A.B. Yehoshua/Hillel Halkin"},
+                "Rating": {"N": "3.43"},
+                "ISBN": {"S": "0151012261"},
+                "PageCount": {"N": "256"},
+                "Publisher": {"S": "Houghton Mifflin Harcourt"},
+                "ItemID": {"S": "337"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Woman of Substance (Emma Harte Saga #1)"},
+                "Authors": {"S": "Barbara Taylor Bradford"},
+                "Rating": {"N": "4.18"},
+                "ISBN": {"S": "031235326X"},
+                "PageCount": {"N": "928"},
+                "Publisher": {"S": "Griffin"},
+                "ItemID": {"S": "338"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Woman's High Calling Growth and Study Guide"},
+                "Authors": {"S": "Elizabeth George"},
+                "Rating": {"N": "4.15"},
+                "ISBN": {"S": "0736904948"},
+                "PageCount": {"N": "160"},
+                "Publisher": {"S": "Harvest House Publishers"},
+                "ItemID": {"S": "339"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Working Stiff's Manifesto: A Memoir of Thirty Jobs I Quit  Nine That Fired Me  and Three I Can't Remember"},
+                "Authors": {"S": "Iain Levison"},
+                "Rating": {"N": "3.83"},
+                "ISBN": {"S": "0812967941"},
+                "PageCount": {"N": "164"},
+                "Publisher": {"S": "Random House Trade"},
+                "ItemID": {"S": "340"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A World Lit Only by Fire"},
+                "Authors": {"S": "William Manchester/Barrett Whitener"},
+                "Rating": {"N": "3.85"},
+                "ISBN": {"S": "0786160446"},
+                "PageCount": {"N": "10"},
+                "Publisher": {"S": "Blackstone Audiobooks"},
+                "ItemID": {"S": "341"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A World Lit Only by Fire: The Medieval Mind and the Renaissance: Portrait of an Age"},
+                "Authors": {"S": "William Manchester"},
+                "Rating": {"N": "3.85"},
+                "ISBN": {"S": "0316545562"},
+                "PageCount": {"N": "322"},
+                "Publisher": {"S": "Back Bay Books"},
+                "ItemID": {"S": "342"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A World of Art"},
+                "Authors": {"S": "Henry M. Sayre"},
+                "Rating": {"N": "3.73"},
+                "ISBN": {"S": "0132221861"},
+                "PageCount": {"N": "592"},
+                "Publisher": {"S": "Prentice Hall"},
+                "ItemID": {"S": "343"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": ""A Wrinkle in Time: A Guide for Using ""A Wrinkle in Time"" in the Classroom""},
+                "Authors": {"S": "John Carratello/Patty Carratello/Theresa Wright"},
+                "Rating": {"N": "4"},
+                "ISBN": {"S": "1557344035"},
+                "PageCount": {"N": "48"},
+                "Publisher": {"S": "Teacher Created Resources"},
+                "ItemID": {"S": "344"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Wrinkle in Time: With Related Readings (A Wrinkle in Time Quintet #1)"},
+                "Authors": {"S": "Madeleine L'Engle"},
+                "Rating": {"N": "4"},
+                "ISBN": {"S": "0821925326"},
+                "PageCount": {"N": "250"},
+                "Publisher": {"S": "EMC/Paradigm Publishing"},
+                "ItemID": {"S": "345"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Writer's Diary"},
+                "Authors": {"S": "Virginia Woolf/Leonard Woolf"},
+                "Rating": {"N": "4.26"},
+                "ISBN": {"S": "0156027917"},
+                "PageCount": {"N": "355"},
+                "Publisher": {"S": "Mariner Books"},
+                "ItemID": {"S": "346"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Writer's Workbook: Daily Exercises for the Writing Life"},
+                "Authors": {"S": "Caroline Sharp/Elizabeth Gilbert"},
+                "Rating": {"N": "3.72"},
+                "ISBN": {"S": "031228621X"},
+                "PageCount": {"N": "176"},
+                "Publisher": {"S": "St. Martin's Griffin"},
+                "ItemID": {"S": "347"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Year at the Races: Reflections on Horses  Humans  Love  Money  and Luck"},
+                "Authors": {"S": "Jane Smiley"},
+                "Rating": {"N": "3.9"},
+                "ISBN": {"S": "1400033179"},
+                "PageCount": {"N": "304"},
+                "Publisher": {"S": "Anchor"},
+                "ItemID": {"S": "348"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Year Down Yonder (A Long Way from Chicago  #2)"},
+                "Authors": {"S": "Richard Peck"},
+                "Rating": {"N": "4.11"},
+                "ISBN": {"S": "0142300705"},
+                "PageCount": {"N": "160"},
+                "Publisher": {"S": "Puffin Books"},
+                "ItemID": {"S": "349"}
+            }
+        }
+    },{
+        "PutRequest": {
+            "Item": {
+                "Title": {"S": "A Year in Chocolate: Four Seasons of Unforgettable Desserts"},
+                "Authors": {"S": "Alice Medrich"},
+                "Rating": {"N": "3.74"},
+                "ISBN": {"S": "0446526649"},
+                "PageCount": {"N": "152"},
+                "Publisher": {"S": "Warner Books (NY)"},
+                "ItemID": {"S": "350"}
+            }
+        }
+    }]}

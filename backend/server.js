@@ -11,8 +11,10 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/dbinfo", async (req, res) => {
+  const pageNumber = req.query.page || 1; // Default page number is 1 if not provided
+
   try {
-    const data = await getDataFromDynamoDB();
+    const data = await getDataFromDynamoDB(parseInt(pageNumber, 10));
     res.json(data); // Return the retrieved data as JSON
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve data" });
