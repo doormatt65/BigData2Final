@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
+import "./HomeTable.css";
 
 const HomeTable = () => {
   const [dataFromDynamoDB, setDataFromDynamoDB] = useState([]);
@@ -20,6 +23,11 @@ const HomeTable = () => {
 
   return (
     <>
+      <div className="pagination">
+        <p>Page {pageNumber}</p>
+        <Button onClick={() => setPageNumber(pageNumber - 1)}>Previous</Button>
+        <Button onClick={() => setPageNumber(pageNumber + 1)}>Next</Button>
+      </div>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -31,12 +39,25 @@ const HomeTable = () => {
                 <Card.Body>
                   <Card.Title>{item.Title}</Card.Title>
                   <Card.Text>{item.Authors}</Card.Text>
+                  {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
+                  <Image
+                    src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg`}
+                  ></Image>
+                  <Card.Text id="price">
+                    ${(item.NumPages * 0.04).toFixed(2)}
+                  </Card.Text>
+                  <Button id="addToCart">Add To Cart</Button>
                 </Card.Body>
               </Card>
             </Col>
           ))}
         </Row>
       )}
+      <div className="pagination">
+        <p>Page {pageNumber}</p>
+        <Button onClick={() => setPageNumber(pageNumber - 1)}>Previous</Button>
+        <Button onClick={() => setPageNumber(pageNumber + 1)}>Next</Button>
+      </div>
     </>
   );
 };

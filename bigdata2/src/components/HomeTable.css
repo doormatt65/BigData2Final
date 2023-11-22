@@ -1,0 +1,21 @@
+.pagination p {
+  text-align: center;
+  margin-top: 10px;
+  padding: 0;
+}
+.pagination Button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.pagination {
+  display: inline-flex;
+  text-align: center;
+}
+#addToCart {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@ AWS.config.update({ region: "us-east-2" }); // Region
 const dynamodb = new AWS.DynamoDB();
 
 async function getDataFromDynamoDB(pageNumber) {
-  const itemsPerPage = 10;
+  const itemsPerPage = 11;
   const startKey = (pageNumber - 1) * itemsPerPage + 1;
   const endKey = startKey + itemsPerPage - 1;
 
@@ -30,7 +30,9 @@ async function getDataFromDynamoDB(pageNumber) {
         data.Items.forEach((item) => {
           items.push({
             Title: item.Title.S, // Adjust property names based on your actual data structure
-            Authors: item.Authors.S, // Adjust property names based on your actual data structure
+            Authors: item.Authors.S,
+            ISBN: item.ISBN.S,
+            NumPages: item.NumPages.N, // Adjust property names based on your actual data structure
             // ... other properties
           });
         });
