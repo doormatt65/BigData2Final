@@ -39,14 +39,18 @@ const HomeTable = () => {
                 <Card.Body>
                   <Card.Title>{item.Title}</Card.Title>
                   <Card.Text>{item.Authors}</Card.Text>
-                  {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
-                  <Image
-                    src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg`}
-                  ></Image>
-                  <Card.Text id="price">
-                    ${(item.NumPages * 0.04).toFixed(2)}
-                  </Card.Text>
-                  <Button id="addToCart">Add To Cart</Button>
+                  <div className="imageAndCart">
+                    {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
+                    <Image
+                      src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg`}
+                    ></Image>
+                    <div className="priceAndCart">
+                      <Card.Text id="price">
+                        ${(item.NumPages * 0.04).toFixed(2)}
+                      </Card.Text>
+                      <Button id="addToCart">Add To Cart</Button>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>

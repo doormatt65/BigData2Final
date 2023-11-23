@@ -25,3 +25,24 @@
   margin: 10px;
   height: 500px;
 }
+
+.imageAndCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.priceAndCart {
+  display: block;
+  justify-content: space-between;
+  align-items: start;
+}
+.priceAndCart Button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.priceAndCart p {
+  margin: 0;
+  padding-left: 7px;
+}
