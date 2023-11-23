@@ -2,7 +2,7 @@
 
 AWS_PROFILE="default"
 AWS_REGION="us-east-2"
-DYNAMODB_TABLE_NAME="Table"
+DYNAMODB_TABLE_NAME="Test"
 
 request_items=""
 batch_size=25  # Adjust this batch size according to your needs
@@ -37,7 +37,7 @@ do
     request_items=""
     counter=0
   fi
-done < bookdata.csv
+done < test.csv
 
 # Process the remaining items if not a complete batch
 if [ ${#request_items} -gt 0 ]; then
