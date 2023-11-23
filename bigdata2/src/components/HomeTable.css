@@ -19,3 +19,9 @@
   border: 1px solid #ccc;
   cursor: pointer;
 }
+
+.card {
+  /* card style */
+  margin: 10px;
+  height: 500px;
+}
