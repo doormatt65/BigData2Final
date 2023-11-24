@@ -6,7 +6,7 @@ async function getDataFromDynamoDB(groupId) {
   const items = [];
 
   const params = {
-    TableName: "Test2",
+    TableName: "Books",
     KeyConditionExpression: "GroupID = :groupId",
     ExpressionAttributeValues: {
       ":groupId": { S: groupId.toString() },
@@ -26,7 +26,14 @@ async function getDataFromDynamoDB(groupId) {
           NumPages: parseInt(item.NumPages.N),
           // ... other properties
         });
-        console.log("ID: " + item["ItemID"].S + " " + item["Title"].S);
+        console.log(
+          "GroupID: " +
+            item["GroupID"].S +
+            " ID: " +
+            item["ItemID"].S +
+            " " +
+            item["Title"].S
+        );
       });
     }
   } catch (error) {
