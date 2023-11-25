@@ -1,43 +1,47 @@
 const AWS = require("aws-sdk");
 AWS.config.update({ region: "us-east-2" });
-const dynamodb = new AWS.DynamoDB();
+const docClient = new AWS.DynamoDB.DocumentClient();
 
 async function getDataFromDynamoDB(groupId) {
   const items = [];
 
   const params = {
-    TableName: "Books",
+    TableName: "Table", // Replace 'YourTableName' with your actual table name
     KeyConditionExpression: "GroupID = :groupId",
     ExpressionAttributeValues: {
-      ":groupId": { S: groupId.toString() },
+      ":groupId": groupId, // Assuming GroupID is a number
     },
   };
 
   try {
-    const data = await dynamodb.query(params).promise();
+    const data = await docClient.query(params).promise();
 
     if (data.Items && data.Items.length > 0) {
       data.Items.forEach((item) => {
         items.push({
-          ItemID: item.ItemID.S,
-          Title: item.Title.S,
-          Authors: item.Authors.S,
-          ISBN: item.ISBN.S,
-          NumPages: parseInt(item.NumPages.N),
+          ItemID: item.ItemID, // Assuming ItemID is a number
+          // Assuming other attributes exist in the same format as your previous function
+          Title: item.Title,
+          Authors: item.Authors,
+          ISBN: item.ISBN,
+          PageCount: parseInt(item.PageCount), // Assuming NumPages is a number
           // ... other properties
         });
         console.log(
           "GroupID: " +
-            item["GroupID"].S +
+            item["GroupID"] +
             " ID: " +
-            item["ItemID"].S +
+            item["ItemID"] +
             " " +
-            item["Title"].S
+            item["Title"] +
+            " " +
+            item["PageCount"]
         );
       });
     }
   } catch (error) {
     console.error("Error retrieving data:", error);
+    throw error;
   }
 
   return items;

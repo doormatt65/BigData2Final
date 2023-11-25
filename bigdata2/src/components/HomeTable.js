@@ -50,7 +50,7 @@ const HomeTable = () => {
                     />
                     <div className="priceAndCart">
                       <Card.Text id="price">
-                        ${(item.NumPages * 0.04).toFixed(2)}
+                        ${(item.PageCount * 0.04).toFixed(2)}
                       </Card.Text>
                       <Button id="addToCart">Add To Cart</Button>
                     </div>
