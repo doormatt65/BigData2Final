@@ -11,9 +11,16 @@ const HomeTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/dbinfo?page=${pageNumber}`)
-      .then((response) => response.json())
+    // fetch(`http://localhost:8000/dbinfo?page=${pageNumber}`)
+    fetch(
+      `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/dbinfo?page=${pageNumber}`
+    )
+      .then((response) => {
+        console.log("Response:", response);
+        return response.json();
+      })
       .then((data) => {
+        console.log(data); // Print the received data
         setDataFromDynamoDB(data); // Set the received data
         setIsLoading(false);
       })
