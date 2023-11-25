@@ -3,6 +3,7 @@ import { Card, Row, Col } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import "./HomeTable.css";
+import notFound from "../notfound.png";
 
 const HomeTable = () => {
   const [dataFromDynamoDB, setDataFromDynamoDB] = useState([]);
@@ -42,11 +43,14 @@ const HomeTable = () => {
                   <div className="imageAndCart">
                     {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
                     <Image
-                      src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg`}
-                    ></Image>
+                      src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg?default=false`}
+                      onError={(e) => {
+                        e.target.src = notFound; // Set default image on error
+                      }}
+                    />
                     <div className="priceAndCart">
                       <Card.Text id="price">
-                        ${(item.NumPages * 0.04).toFixed(2)}
+                        ${(item.PageCount * 0.04).toFixed(2)}
                       </Card.Text>
                       <Button id="addToCart">Add To Cart</Button>
                     </div>
