@@ -12,10 +12,10 @@ const ProductPage = () => {
 
   useEffect(() => {
     // Fetch product data based on ISBN
-    fetch(`http://localhost:4000/products/${groupId}/${isbn}`)
-      // fetch(
-      //   `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/product/${groupId}/${isbn}`
-      // )
+    // fetch(`http://localhost:4000/products/${groupId}/${isbn}`)
+    fetch(
+      `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/product/${groupId}/${isbn}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setProductData(data);
