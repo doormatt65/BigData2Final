@@ -10,16 +10,16 @@ const Layout = () => {
     <>
       <Navbar>
         <Container>
-          <Navbar.Brand href="/">Matt Braun AWS Project</Navbar.Brand>
+          <Navbar.Brand>Matt Braun AWS Project</Navbar.Brand>
           <Nav className="me-auto" variant="pills">
             <Nav.Item>
               <LinkContainer to="/">
-                <Button className="main-nav-button">Home</Button>
+                <Button className="main-nav-button">Home 📚</Button>
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>
               <LinkContainer to="/cart">
-                <Button className="main-nav-button">Cart</Button>
+                <Button className="main-nav-button">Cart 🛒</Button>
               </LinkContainer>
             </Nav.Item>
           </Nav>

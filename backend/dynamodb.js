@@ -19,12 +19,16 @@ async function getDataFromDynamoDB(groupId) {
     if (data.Items && data.Items.length > 0) {
       data.Items.forEach((item) => {
         items.push({
+          GroupID: item.GroupID, // Assuming GroupID is a number
           ItemID: item.ItemID, // Assuming ItemID is a number
           // Assuming other attributes exist in the same format as your previous function
           Title: item.Title,
           Authors: item.Authors,
           ISBN: item.ISBN,
+          Publisher: item.Publisher,
           PageCount: parseInt(item.PageCount), // Assuming NumPages is a number
+          Rating: parseFloat(item.Rating), // Assuming Rating is a number
+
           // ... other properties
         });
         console.log(

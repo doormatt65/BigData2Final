@@ -4,6 +4,7 @@ import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import "./HomeTable.css";
 import notFound from "../notfound.png";
+import { Link } from "react-router-dom";
 
 const HomeTable = () => {
   const [dataFromDynamoDB, setDataFromDynamoDB] = useState([]);
@@ -11,16 +12,15 @@ const HomeTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // fetch(`http://localhost:8000/dbinfo?page=${pageNumber}`)
-    fetch(
-      `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/dbinfo?page=${pageNumber}`
-    )
+    fetch(`http://localhost:4000/dbinfo?page=${pageNumber}`)
+      // fetch(
+      //   `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/dbinfo?page=${pageNumber}`
+      // )
       .then((response) => {
-        console.log("Response:", response);
+        // console.log("Response:", response);
         return response.json();
       })
       .then((data) => {
-        console.log(data); // Print the received data
         setDataFromDynamoDB(data); // Set the received data
         setIsLoading(false);
       })
@@ -49,12 +49,14 @@ const HomeTable = () => {
                   <Card.Text>{item.Authors}</Card.Text>
                   <div className="imageAndCart">
                     {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
-                    <Image
-                      src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg?default=false`}
-                      onError={(e) => {
-                        e.target.src = notFound; // Set default image on error
-                      }}
-                    />
+                    <Link to={`/products/${item.GroupID}/${item.ISBN}`}>
+                      <Image
+                        src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg?default=false`}
+                        onError={(e) => {
+                          e.target.src = notFound; // Set default image on error
+                        }}
+                      />
+                    </Link>
                     <div className="priceAndCart">
                       <Card.Text id="price">
                         ${(item.PageCount * 0.04).toFixed(2)}

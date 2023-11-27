@@ -1,4 +1,5 @@
 const { getDataFromDynamoDB } = require("./dynamodb");
+const { fetchProductInfo } = require("./fetchProductInfo");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -18,6 +19,18 @@ app.get("/dbinfo", async (req, res) => {
     res.json(data); // Return the retrieved data as JSON
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve data" });
+  }
+});
+
+app.get("/products/:groupId/:isbn", async (req, res) => {
+  const groupId = req.params.groupId; // Extract GroupID from URL parameter
+  const isbn = req.params.isbn; // Extract ISBN from URL parameter
+
+  try {
+    const productDetails = await fetchProductInfo(groupId, isbn);
+    res.json(productDetails); // Return product details as JSON
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve product details" });
   }
 });
 

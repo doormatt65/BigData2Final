@@ -1,0 +1,18 @@
+.product {
+    display: inline-flex;
+}
+.product > * {
+    margin: 0 10px;
+}
+
+.details {
+    padding-top: 15%;
+}
+.details p {
+    margin: 0;
+    padding: 5px;
+    width: 80%;
+}
+.purchase{
+    padding-top: 25%;
+}
