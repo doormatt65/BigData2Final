@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import notFound from "../notfound.png";
 import "./ProductContent.css";
+import Button from "react-bootstrap/Button";
 
 const ProductPage = () => {
   const { groupId, isbn } = useParams();
@@ -68,7 +69,7 @@ const ProductPage = () => {
                 <strong>Price:</strong>{" "}
                 <p>${(productData.PageCount * 0.04).toFixed(2)}</p>
               </p>
-              <button>Add to Cart</button>
+              <Button>Add to Cart</Button>
             </div>
           </div>
         </>
