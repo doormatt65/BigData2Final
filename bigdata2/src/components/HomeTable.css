@@ -24,6 +24,7 @@
   /* card style */
   margin: 10px;
   height: 500px;
+  background-color: rgb(247, 241, 232);
 }
 
 .imageAndCart {
@@ -32,9 +33,12 @@
   align-items: center;
 }
 .priceAndCart {
+  position: absolute;
   display: block;
   justify-content: space-between;
   align-items: start;
+  top: 50%;
+  left: 60%;
 }
 .priceAndCart Button {
   margin: 0 5px;

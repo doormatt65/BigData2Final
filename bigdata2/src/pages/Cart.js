@@ -1,11 +1,15 @@
 import Container from "react-bootstrap/Container";
-// import HomeTable from "../components/HomeTable.js";
+import CartList from "../components/CartList";
 
 const Cart = () => {
   return (
     <>
       <div className="App">
-        <Container className="login-container">Cart coming soon</Container>
+        <Container className="login-container">
+          Cart coming soon
+          <br />
+          <CartList />
+        </Container>
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 const { getDataFromDynamoDB } = require("./dynamodb");
 const { fetchProductInfo } = require("./fetchProductInfo");
+const { addToCartInDynamoDB } = require("./addToCartDB");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -31,6 +32,17 @@ app.get("/products/:groupId/:isbn", async (req, res) => {
     res.json(productDetails); // Return product details as JSON
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve product details" });
+  }
+});
+
+app.post("/addToCart", express.json(), (req, res) => {
+  const { UserID, item } = req.body;
+
+  try {
+    addToCartInDynamoDB(UserID, item);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add item to cart" });
   }
 });
 
