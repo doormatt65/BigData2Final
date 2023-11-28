@@ -17,7 +17,8 @@ async function addToCartInDynamoDB(UserID, item) {
       Publisher: item.Publisher,
       PageCount: item.PageCount,
       Rating: item.Rating,
-      Status: "ACTIVE", // Other options: "PURCHASED"
+      ItemState: "ACTIVE", // Other options: "PURCHASED"
+      ItemAddedAt: new Date().toISOString(),
     },
   };
   console.log("Adding a new item...");
@@ -33,4 +34,54 @@ async function addToCartInDynamoDB(UserID, item) {
     }
   });
 }
-module.exports = { addToCartInDynamoDB };
+
+async function getCart(UserID) {
+  const items = {};
+
+  const params = {
+    TableName: "Cart",
+    KeyConditionExpression: "UserID = :UserID",
+    FilterExpression: "ItemState = :itemstate",
+    ExpressionAttributeValues: {
+      ":UserID": Number(UserID), // Assuming UserID corresponds to GroupID
+      ":itemstate": "ACTIVE",
+    },
+  };
+
+  try {
+    const data = await docClient.query(params).promise();
+
+    if (data.Items && data.Items.length > 0) {
+      data.Items.forEach((item) => {
+        const ISBN = item.ISBN;
+        if (!items[ISBN]) {
+          items[ISBN] = {
+            count: 1,
+            details: {
+              Title: item.Title,
+              Authors: item.Authors,
+              ISBN: ISBN,
+              Publisher: item.Publisher,
+              PageCount: parseInt(item.PageCount),
+              Rating: parseFloat(item.Rating),
+              // ... other properties
+            },
+          };
+        } else {
+          items[ISBN].count++;
+        }
+      });
+      console.log("Items:", items);
+    }
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    throw error;
+  }
+
+  return Object.values(items).map((item) => ({
+    ...item.details,
+    count: item.count,
+  }));
+}
+
+module.exports = { addToCartInDynamoDB, getCart };

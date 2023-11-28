@@ -1,6 +1,6 @@
 const { getDataFromDynamoDB } = require("./dynamodb");
 const { fetchProductInfo } = require("./fetchProductInfo");
-const { addToCartInDynamoDB } = require("./addToCartDB");
+const { addToCartInDynamoDB, getCart } = require("./addToCartDB");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -43,6 +43,18 @@ app.post("/addToCart", express.json(), (req, res) => {
     res.json({ success: true });
   } catch (error) {
     res.status(500).json({ error: "Failed to add item to cart" });
+  }
+});
+
+app.get("/getCart", async (req, res) => {
+  const UserID = req.query.UserID;
+  // console.log("getcart is called");
+  try {
+    const cartItems = await getCart(UserID);
+    // console.log("function called");
+    res.json(cartItems);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve cart items" });
   }
 });
 

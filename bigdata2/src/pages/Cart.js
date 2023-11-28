@@ -6,8 +6,6 @@ const Cart = () => {
     <>
       <div className="App">
         <Container className="login-container">
-          Cart coming soon
-          <br />
           <CartList />
         </Container>
       </div>
