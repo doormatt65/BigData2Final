@@ -9,12 +9,16 @@ import "./CartList.css";
 const CartList = () => {
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [subtotal, setSubtotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [updateCart, setUpdateCart] = useState(0);
 
   const UserID = localStorage.getItem("UserID") ?? 1;
 
   function removeItem(UserID, ISBN, num) {
     fetch(
-      //"http://localhost:4000/removeItem",
+      // "http://localhost:4000/removeItem",
       "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/removeItem",
       {
         method: "POST",
@@ -23,12 +27,57 @@ const CartList = () => {
         },
         body: JSON.stringify({ UserID: UserID, ISBN: ISBN, num: num }),
       }
+    )
+      .then((response) => {
+        // console.log("Response:", response);
+        setUpdateCart(response.json()); //just something to update the state to trigger a rerender
+      })
+      .catch((error) => {
+        console.error("Error removing item:", error);
+      });
+    setUpdateCart(updateCart + 1);
+  }
+
+  function checkout(UserID) {
+    fetch(
+      // "http://localhost:4000/checkout",
+      "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/checkout",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ UserID: UserID }),
+      }
     );
+    window.location.href = "/thanks";
+  }
+
+  function addToCart(item) {
+    fetch(
+      "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/addToCart",
+      //"http://localhost:4000/addToCart",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ UserID, item }),
+      }
+    )
+      .then((response) => {
+        // console.log("Response:", response);
+        setUpdateCart(response.json()); //just something to update the state to trigger a rerender
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+    setUpdateCart(updateCart + 1);
   }
 
   useEffect(() => {
     fetch(
-      //`http://localhost:4000/getCart?UserID=${UserID}`
+      // `http://localhost:4000/getCart?UserID=${UserID}`
       `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/getCart?UserID=${UserID}`
     )
       .then((response) => {
@@ -38,11 +87,18 @@ const CartList = () => {
       .then((data) => {
         setCartItems(data);
         setIsLoading(false);
+        const calculatedSubtotal = data.reduce(
+          (acc, item) => acc + item.Price * item.count,
+          0
+        );
+        setSubtotal(calculatedSubtotal);
+        setTax(calculatedSubtotal * 0.06);
+        setTotal(calculatedSubtotal + tax);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, [UserID]);
+  }, [UserID, tax, updateCart]);
 
   return (
     <div className="cart">
@@ -63,17 +119,19 @@ const CartList = () => {
               <Col xs={5}>
                 <h5>{item.Title}</h5>
                 <p>{item.Authors}</p>
-                <p>Price: ${(item.PageCount * 0.04).toFixed(2)}</p>
+                <p>${item.Price}</p>
                 <p>Quantity: {item.count}</p>
               </Col>
               <Col>
-                <br />
-                <p>
-                  Total: $
-                  {((item.PageCount * 0.04).toFixed(2) * item.count).toFixed(2)}
-                </p>
-                <Button onClick={() => removeItem(UserID, item.ISBN, 1)}>
-                  Remove
+                <p>Total: ${(item.Price * item.count).toFixed(2)}</p>
+                <Button
+                  className="quantity"
+                  onClick={() => removeItem(UserID, item.ISBN, 1)}
+                >
+                  -1
+                </Button>
+                <Button className="quantity" onClick={() => addToCart(item)}>
+                  +1
                 </Button>
               </Col>
             </Row>
@@ -82,11 +140,11 @@ const CartList = () => {
       </div>
       <div className="cart-summary">
         <h4>Cart Summary</h4>
-        <p>Subtotal: $0.00</p>
-        <p>Tax: $0.00</p>
-        <p>Shipping: $0.00</p>
-        <p>Total: $0.00</p>
-        <Button>Checkout</Button>
+        <p>Subtotal: ${subtotal.toFixed(2)}</p>
+        <p>Tax: ${tax.toFixed(2)}</p>
+        <p>Shipping: Free</p>
+        <p>Total: ${total.toFixed(2)}</p>
+        <Button onClick={() => checkout(UserID)}>Checkout</Button>
       </div>
     </div>
   );

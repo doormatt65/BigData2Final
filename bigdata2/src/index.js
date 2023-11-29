@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Cart from "./pages/Cart";
 import Product from "./pages/Product";
+import Thanks from "./pages/Thanks";
 
 export default function App() {
   return (
@@ -20,6 +21,9 @@ export default function App() {
         </Route>
         <Route path="/products/:groupId/:isbn" element={<Layout />}>
           <Route index element={<Product />} />
+        </Route>
+        <Route path="/thanks" element={<Layout />}>
+          <Route index element={<Thanks />} />
         </Route>
       </Routes>
     </BrowserRouter>

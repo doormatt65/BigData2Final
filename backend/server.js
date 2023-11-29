@@ -1,6 +1,11 @@
 const { getDataFromDynamoDB } = require("./dynamodb");
 const { fetchProductInfo } = require("./fetchProductInfo");
-const { addToCartInDynamoDB, getCart } = require("./addToCartDB");
+const {
+  addToCartInDynamoDB,
+  getCart,
+  checkout,
+  removeItem,
+} = require("./addToCartDB");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -53,8 +58,29 @@ app.get("/getCart", async (req, res) => {
     const cartItems = await getCart(UserID);
     // console.log("function called");
     res.json(cartItems);
+    console.log("Success:", cartItems);
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve cart items" });
+  }
+});
+
+app.post("/checkout", express.json(), (req, res) => {
+  const { UserID } = req.body;
+  try {
+    checkout(UserID);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to checkout" });
+  }
+});
+
+app.post("/removeItem", express.json(), (req, res) => {
+  const { UserID, ISBN, num } = req.body;
+  try {
+    removeItem(UserID, ISBN, num);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to remove item" });
   }
 });
 

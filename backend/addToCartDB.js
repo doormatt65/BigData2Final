@@ -43,7 +43,7 @@ async function getCart(UserID) {
     KeyConditionExpression: "UserID = :UserID",
     FilterExpression: "ItemState = :itemstate",
     ExpressionAttributeValues: {
-      ":UserID": Number(UserID), // Assuming UserID corresponds to GroupID
+      ":UserID": Number(UserID),
       ":itemstate": "ACTIVE",
     },
   };
@@ -64,6 +64,7 @@ async function getCart(UserID) {
               Publisher: item.Publisher,
               PageCount: parseInt(item.PageCount),
               Rating: parseFloat(item.Rating),
+              Price: parseFloat(item.PageCount * 0.04).toFixed(2),
               // ... other properties
             },
           };
@@ -71,7 +72,6 @@ async function getCart(UserID) {
           items[ISBN].count++;
         }
       });
-      console.log("Items:", items);
     }
   } catch (error) {
     console.error("Error retrieving data:", error);
@@ -84,4 +84,98 @@ async function getCart(UserID) {
   }));
 }
 
-module.exports = { addToCartInDynamoDB, getCart };
+async function checkout(UserID) {
+  const params = {
+    TableName: "Cart",
+    IndexName: "UserID-ISBN-index", // Using the GSI
+    KeyConditionExpression: "UserID = :UserID",
+    FilterExpression: "ItemState = :itemstate",
+    ExpressionAttributeValues: {
+      ":UserID": Number(UserID),
+      ":itemstate": "ACTIVE",
+    },
+  };
+
+  try {
+    const data = await docClient.query(params).promise();
+
+    if (data.Items && data.Items.length > 0) {
+      const updatePromises = data.Items.map(async (item) => {
+        const updateParams = {
+          TableName: "Cart",
+          Key: {
+            UserID: item.UserID,
+            ItemAddedAt: item.ItemAddedAt,
+          },
+          UpdateExpression: "set ItemState = :newstate",
+          ExpressionAttributeValues: {
+            ":newstate": "PURCHASED",
+          },
+          ReturnValues: "ALL_NEW", // Change as needed
+        };
+
+        return docClient.update(updateParams).promise();
+      });
+
+      await Promise.all(updatePromises);
+      console.log("Items marked as PURCHASED successfully.");
+      return { success: true };
+    } else {
+      console.log("No items found for the given UserID and state.");
+      return { success: false };
+    }
+  } catch (error) {
+    console.error("Error marking items as PURCHASED:", error);
+    throw error;
+  }
+}
+
+async function removeItem(UserID, ISBN, num) {
+  const paramsQuery = {
+    TableName: "Cart",
+    IndexName: "UserID-ISBN-index", // Using the GSI
+    KeyConditionExpression: "UserID = :UserID and ISBN = :ISBN",
+    FilterExpression: "ItemState = :itemstate",
+    ExpressionAttributeValues: {
+      ":UserID": Number(UserID),
+      ":ISBN": ISBN,
+      ":itemstate": "ACTIVE",
+    },
+  };
+
+  try {
+    const queryResult = await docClient.query(paramsQuery).promise();
+    if (queryResult.Items && queryResult.Items.length > 0) {
+      const itemsToUpdate = queryResult.Items.slice(0, num); // Select the specified number of items to cancel
+
+      const updatePromises = itemsToUpdate.map(async (item) => {
+        const updateParams = {
+          TableName: "Cart",
+          Key: {
+            UserID: item.UserID,
+            ItemAddedAt: item.ItemAddedAt,
+          },
+          UpdateExpression: "set ItemState = :newstate",
+          ExpressionAttributeValues: {
+            ":newstate": "CANCELLED",
+          },
+          ReturnValues: "ALL_NEW", // Change as needed
+        };
+
+        return docClient.update(updateParams).promise();
+      });
+
+      await Promise.all(updatePromises);
+      console.log("Items marked as CANCELLED successfully.");
+      return { success: true };
+    } else {
+      console.log("Item not found for UserID and ISBN with ACTIVE ItemState");
+      return { success: false };
+    }
+  } catch (error) {
+    console.error("Error marking items as CANCELLED:", error);
+    throw error;
+  }
+}
+
+module.exports = { addToCartInDynamoDB, getCart, checkout, removeItem };
