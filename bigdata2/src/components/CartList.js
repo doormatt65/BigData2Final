@@ -14,8 +14,8 @@ const CartList = () => {
 
   function removeItem(UserID, ISBN, num) {
     fetch(
-      "http://localhost:4000/removeItem",
-      // fetch("http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/removeItem",
+      //"http://localhost:4000/removeItem",
+      "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/removeItem",
       {
         method: "POST",
         headers: {
@@ -27,7 +27,10 @@ const CartList = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:4000/getCart?UserID=${UserID}`)
+    fetch(
+      //`http://localhost:4000/getCart?UserID=${UserID}`
+      `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/getCart?UserID=${UserID}`
+    )
       .then((response) => {
         // console.log("Response:" + response.json());
         return response.json();

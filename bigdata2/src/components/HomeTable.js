@@ -17,8 +17,8 @@ const HomeTable = () => {
 
   function addToCart(item) {
     fetch(
-      // "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/addToCart",
-      "http://localhost:4000/addToCart",
+      "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/addToCart",
+      //"http://localhost:4000/addToCart",
       {
         method: "POST",
         headers: {
@@ -39,8 +39,8 @@ const HomeTable = () => {
   }
 
   useEffect(() => {
-    // fetch(`http://localhost:4000/dbinfo?page=${pageNumber}`)
     fetch(
+      // `http://localhost:4000/dbinfo?page=${pageNumber}`
       `http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/dbinfo?page=${pageNumber}`
     )
       .then((response) => {
@@ -77,7 +77,6 @@ const HomeTable = () => {
                   </Link>
                   <Card.Text>{item.Authors}</Card.Text>
                   <div className="imageAndCart">
-                    {/* <Image src="https://covers.openlibrary.org/b/isbn/" + {item.ISBN}+"-M.jpg" /> */}
                     <Link to={`/products/${item.GroupID}/${item.ISBN}`}>
                       <Image
                         src={`https://covers.openlibrary.org/b/isbn/${item.ISBN}-M.jpg?default=false`}
