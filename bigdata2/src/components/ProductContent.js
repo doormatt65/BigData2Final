@@ -4,11 +4,37 @@ import Image from "react-bootstrap/Image";
 import notFound from "../notfound.png";
 import "./ProductContent.css";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
 
 const ProductPage = () => {
   const { groupId, isbn } = useParams();
   const [productData, setProductData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const UserID = localStorage.getItem("UserID") ?? 1;
+
+  function addToCart(item) {
+    fetch(
+      // "http://ec2-3-133-154-215.us-east-2.compute.amazonaws.com:4000/addToCart",
+      "http://localhost:4000/addToCart",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ UserID, item }),
+      }
+    );
+    toast.success(`Added ${item["Title"]} to cart`, {
+      position: "top-center",
+      autoClose: 2000, // Close the toast after 2 seconds
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    // alert(`Added ${item["Title"]} to cart`);
+  }
 
   useEffect(() => {
     // Fetch product data based on ISBN
@@ -66,10 +92,12 @@ const ProductPage = () => {
             </div>
             <div className="purchase">
               <p>
-                <strong>Price:</strong>{" "}
+                <strong>Price:</strong>
                 <p>${(productData.PageCount * 0.04).toFixed(2)}</p>
               </p>
-              <Button>Add to Cart</Button>
+              <Button onClick={() => addToCart(productData)}>
+                Add to Cart
+              </Button>
             </div>
           </div>
         </>

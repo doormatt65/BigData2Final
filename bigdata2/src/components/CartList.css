@@ -1,8 +1,31 @@
-.row {
+.cart-list .row {
   margin: 15px;
-  border: 1px solid #ccc;
+ 
+ 
+  background-color: aliceblue;
+  border : 2px solid #0d6efd;
+  border-radius: 15px;
   padding-top: 50px;
+
 }
 img {
   height: 75%;
+}
+.cart{
+  display : inline-flex;
+}
+div .col-5{
+  margin-left: 50px;
+}
+.cart-summary{
+  margin-left: 50px;
+  background-color: aliceblue;
+  border : 2px solid #0d6efd;
+  border-radius: 15px;
+  height: 50vh;
+  position: sticky;
+  top: 25px;
+  width: 30vw;
+  text-align: center;
+  margin-top: 15px;
 }

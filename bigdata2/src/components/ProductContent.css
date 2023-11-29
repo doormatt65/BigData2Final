@@ -1,8 +1,12 @@
 .product {
   display: inline-flex;
+  background-color: aliceblue;
+  border : 2px solid #0d6efd;
+  border-radius: 15px;
 }
 .product > * {
   margin: 0 10px;
+  
 }
 .cover {
   max-width: 50%;
@@ -17,4 +21,5 @@
 }
 .purchase {
   padding-top: 25%;
+  padding-right: 8%;
 }
